@@ -1,4 +1,3 @@
-```python
 
 from bs4 import BeautifulSoup
 import urllib
@@ -41,4 +40,4 @@ def weather_c(year_max, mth_max, day_max):
 data = weather_c(2018,5,31)
 shape = (len(data)/7,7)
 weather_bj = pd.DataFrame(np.array(data).reshape(shape), columns = name)
-```
+
