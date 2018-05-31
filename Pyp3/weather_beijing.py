@@ -1,7 +1,6 @@
 
 from bs4 import BeautifulSoup
 import urllib
-import requests
 import pandas as pd
 import numpy as np
 from calendar import monthrange
@@ -12,7 +11,7 @@ name = ['Date', 'Mean', 'Max', 'Min', 'rain', 'wind', 'visibility']
 #return recent year's weather details with max year specified
 def weather_c(year_max, mth_max, day_max):
     data2 = []
-    for year in range(year_max - 1, year_max+1):
+    for year in range(year_max - 2, year_max+1):
         for mth in range(1,13):
             day_threshold = monthrange(year, mth)[1] + 1
 
@@ -20,7 +19,7 @@ def weather_c(year_max, mth_max, day_max):
 
                 print(year, mth, day)
 
-                if year == year_max & mth == mth_max & day ==day_max:
+                if year == year_max and mth == mth_max and day ==day_max:
                     return data2
 
                 theDate = str(year)+"/" + str(mth) + "/" + str(day)
@@ -38,6 +37,6 @@ def weather_c(year_max, mth_max, day_max):
                         data2.append(child[i].parent.find_all('span','wx-value')[0].get_text())
 
 data = weather_c(2018,5,31)
-shape = (len(data)/7,7)
+shape = (int(len(data)/7),7)
 weather_bj = pd.DataFrame(np.array(data).reshape(shape), columns = name)
 
